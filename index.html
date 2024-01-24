@@ -3,19 +3,17 @@
 <html lang="en">
     <head>
       <meta charset="utf-8">
-      <title>Task Manager</title>
+      <title>Employee Management</title>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link
-          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-          rel="stylesheet"
-      >
+      
+      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
       <link rel="stylesheet" href="css/style1.css">
       
     </head>
     <body>
        
-      <nav class="sidebar">
+      <nav class="sidebar close">
         <header>
           <div class="image-text">
             <span class="image">
@@ -24,12 +22,122 @@
             <div class="text header-text">
               <span class="name">Employee Mangement</span>
             </div>
-            
           </div>
+
+          <i class='bx bx-chevron-right toggle'></i>
         </header>
+
+        <div class="menu-bar">
+          <div class="menu">
+            <!-- <li class="search-box">
+              <a href="#">
+                <i class='bx bx-search-alt icon'></i>
+                <input type="search" placeholder="Search...">
+              </a>
+            </li> -->
+            <ul class="menu-links">
+              <li class="nav-link">
+                <a href="#">
+                  <i class='bx bx-home-alt icon' ></i>
+                  <span class="nav-text">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="#">
+                  <i class='bx bx-buildings icon'></i>
+                  <span class="nav-text">Department</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="#">
+                  <i class='bx bxs-user-badge icon'></i>
+                  <span class="nav-text">Employee</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="#">
+                  <i class='bx bx-user icon'></i>
+                  <span class="nav-text">Users</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="bottom-content">
+            <li class="">
+              <a href="#">
+                <i class='bx bx-log-out icon'></i>
+                <span class="nav-text">Logout</span>
+              </a>
+            </li>
+          </div>
+        </div>
       </nav>
 
 
+      <!-- DASHBOARD -->
+      <section class="home">
+       <div class="main-content">
+        <div class="header-wrapper">
+          <div class="header-title">
+            <span>Management</span>
+            <h2>Dashboard</h2>
+          </div>
+          <div class="user-info">
+            <div class="search-box">
+            <i class='bx bx-search-alt icon'></i>
+            <input type="text" name="" id="" placeholder="Search">
+          </div>
+          <img src="assets/profile.jpg" alt="">
+          </div>
+        </div>
+
+        <div class="card-container">
+          <!-- <h1 class="main-title"></h1> -->
+          <div class="card-wrapper">
+            <div class="employee-card">
+              <div class="card-header">
+                <div class="employee">
+                <span class="title">
+                  Departments
+                </span>
+                <span class="employe-value">59</span>
+              </div>
+              <i class='bx bx-building icons' ></i>
+            </div>
+          </div>
+
+          <div class="employee-card">
+            <div class="card-header">
+              <div class="employee">
+              <span class="title">
+                Employees
+              </span>
+              <span class="employe-value">59</span>
+            </div>
+            <i class='bx bxs-user-rectangle icons'></i>
+          </div>
+        </div>
+
+        <div class="employee-card">
+          <div class="card-header">
+            <div class="employee">
+            <span class="title">
+              Users
+            </span>
+            <span class="employe-value">59</span>
+          </div>
+          <i class='bx bx-user icons'></i>
+        </div>
+      </div>
+          </div>
+
+          
+        </div>
+       </div>
+      </section>
+
+
+      
 
 
 
@@ -43,6 +151,14 @@
       
        
 
-          <script src="js/script1.js"></script>
+          <script>
+            const body = document.querySelector("body"),
+            sidebar = document.querySelector(".sidebar"),
+            toggle = document.querySelector(".toggle");
+
+            toggle.addEventListener("click", () =>{
+              sidebar.classList.toggle("close");
+ });
+          </script>
     </body>
 </html>
