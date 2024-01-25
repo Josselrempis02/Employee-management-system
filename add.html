@@ -1,50 +1,223 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Add Task - Task Manager</title>
-</head>
-<body>
-    <header>
-        <h1>Task Manager</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="add.html">Add Task</a></li>
-                <li><a href="mytask.html">My Tasks</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+    <head>
+      <meta charset="utf-8">
+      <title>Employee Management</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      
+      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="css/style1.css">
+      
+    </head>
+    <body>
+       
+      <nav class="sidebar close">
+        <header>
+          <div class="image-text">
+            <span class="image">
+              <img src="assets/employee.png" alt="logo">
+            </span>
+            <div class="text header-text">
+              <span class="name">Employee Mangement</span>
+            </div>
+          </div>
+
+          <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+          <div class="menu">
+            <!-- <li class="search-box">
+              <a href="#">
+                <i class='bx bx-search-alt icon'></i>
+                <input type="search" placeholder="Search...">
+              </a>
+            </li> -->
+            <ul class="menu-links">
+              <li class="nav-link">
+                <a href="index.html">
+                  <i class='bx bx-home-alt icon' ></i>
+                  <span class="nav-text">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="department.html">
+                  <i class='bx bx-buildings icon'></i>
+                  <span class="nav-text">Department</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="employee.html">
+                  <i class='bx bxs-user-badge icon'></i>
+                  <span class="nav-text">Employee</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="#">
+                  <i class='bx bx-user icon'></i>
+                  <span class="nav-text">Users</span>
+                </a>
+              </li>
             </ul>
-        </nav>
-    </header>
+          </div>
+          <div class="bottom-content">
+            <li class="">
+              <a href="#">
+                <i class='bx bx-log-out icon'></i>
+                <span class="nav-text">Logout</span>
+              </a>
+            </li>
+          </div>
+        </div>
+      </nav>
 
-    <div class="container">
-        <section class="add-task">
-            <form action="#" method="post">
-                <h2>Add Task</h2>
-                <label for="taskTitle">Task Title:</label>
-                <input type="text" id="taskTitle" name="taskTitle" required>
 
-                <label for="taskDescription">Description:</label>
-                <textarea id="taskDescription" name="taskDescription" rows="4" required></textarea>
+      <!-- DASHBOARD -->
+      <section class="home">
+       <div class="main-content">
+        <div class="header-wrapper">
+          <div class="header-title">
+            <span></span>
+            <h2>Employee Data</h2>
+          </div>
+          <div class="user-info">
+            <div class="search-box">
+            <p>Jossel Rempis</p>
+            
+          </div>
+          <img src="assets/profile.jpg" alt="">
+          </div>
+        </div>
 
-                <label for="taskDueDate">Due Date:</label>
-                <input type="date" id="taskDueDate" name="taskDueDate" required>
+        <!-- <div class="card-container">
+          <h1 class="main-title"></h1>
+          <div class="card-wrapper">
+            <div class="employee-card">
+              <div class="card-header">
+                <div class="employee">
+                <span class="title">
+                  Departments
+                </span>
+                <span class="employe-value">59</span>
+              </div>
+              <i class='bx bx-building icons' ></i>
+            </div>
+          </div>
 
-                <label for="taskStatus">Status:</label>
-                <select id="taskStatus" name="taskStatus" required>
-                    <option value="pending">Pending</option>
-                    <option value="completed">Completed</option>
-                </select>
+          <div class="employee-card">
+            <div class="card-header">
+              <div class="employee">
+              <span class="title">
+                Employees
+              </span>
+              <span class="employe-value">59</span>
+            </div>
+            <i class='bx bxs-user-rectangle icons'></i>
+          </div>
+        </div>
 
-                <button type="submit">Add Task</button>
-            </form>
-        </section>
-    </div>
+        <div class="employee-card">
+          <div class="card-header">
+            <div class="employee">
+            <span class="title">
+              Users
+            </span>
+            <span class="employe-value">59</span>
+          </div>
+          <i class='bx bx-user icons'></i>
+        </div>
+      </div>
+          </div>
 
-    <footer>
-        <p>&copy; 2024 Task Manager. All rights reserved.</p>
-    </footer>
-</body>
+          
+        </div> -->
+
+
+          <div class="table-data">
+            <div class="dep">
+              <div class="head">
+                <h3>Add New Employee</h3>                
+                <i class='bx bx-filter'></i>
+              </div>
+              <div class="container">
+                <div class="content">
+                  <form action="add.php" method="post">
+                    <div class="user-details">
+                      <div class="input-box">
+                        <span class="details">Employee Name</span>
+                        <input type="text" placeholder="Enter your name" name="fname" required>
+                      </div>
+                      <div class="input-box">
+                        <span class="details">Phone Number</span>
+                        <input type="text" placeholder="Enter your number" name="number" required>
+                      </div>
+                      <div class="input-box">
+                        <span class="details">Address</span>
+                        <input type="text" placeholder="Enter your address" name="address" required>
+                      </div>
+                      <div class="input-box">
+                        <span class="details">Departments</span>
+                        <select class="select" placeholder="Enter your address" name="departments" required>
+                          <option class="dep" value="dep" disabled selected hidden>Choose Department</option>
+                          <option value="HR">HR Department</option>
+                          <option value="IT">IT Department</option>
+                          <option value="Finance">Finance Department</option>
+                          <option value="Marketing">Marketing Department</option>
+                          <option value="Operations">Operations Department</option>
+                        </select>
+                      </div>
+                      <!-- Add date input here -->
+                      <div class="input-box">
+                        <span class="details">Date</span>
+                        <input type="date" name="dob" required>
+                      </div>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Gender</span>
+                        <select class="select" name="gender" required>
+                          <option class="dep" value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          
+                        </select>
+                    <div class="button">
+                      <input type="submit" name="submit" value="Add"><span>Add Employee</span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+        
+       </div>
+      </section>
+
+
+      
+
+
+
+
+
+
+
+
+
+
+      
+       
+
+          <script>
+            const body = document.querySelector("body"),
+            sidebar = document.querySelector(".sidebar"),
+            toggle = document.querySelector(".toggle");
+
+            toggle.addEventListener("click", () =>{
+              sidebar.classList.toggle("close");
+ });
+          </script>
+    </body>
 </html>
