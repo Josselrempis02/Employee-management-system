@@ -513,7 +513,7 @@ border-radius: 10px;
 .container{
   position: relative;
   max-width: 100%;
-  width: 100%;
+  /* width: 100%; */
   border-radius: 6px;
   padding: 30px;
   margin: 0 15px;
@@ -544,9 +544,10 @@ border-radius: 10px;
   overflow: hidden;
 }
 .container form .form{
-  position: absolute;
-  /* background-color: #fff; */
+  position: relative;
+  
   transition: 0.3s ease;
+  align-items: center;
 }
 .container form .form.second{
   opacity: 0;
@@ -622,7 +623,7 @@ form .fields .input-field{
   color: #fff;
   border-radius: 5px;
   margin: 25px 0;
-  background-color: #4070f4;
+  background: var(--primary-color);
   transition: all 0.3s linear;
   cursor: pointer;
 }
@@ -631,7 +632,7 @@ form .fields .input-field{
   font-weight: 400;
 }
 form button:hover{
-  background-color: #265df2;
+  background-image: linear-gradient(to left, #212529, #343a40, #6c757d)
 }
 form button i,
 form .backBtn i{
