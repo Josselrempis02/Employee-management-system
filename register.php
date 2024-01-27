@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Task Manager</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -18,6 +19,13 @@
                     <h1>Create your account &#x1F44F;</h1>
                 </div>
               
+                <div class="text-field">
+                    <label for="fullname">Full name:
+                        <input id="text" type="text" name="fname" placeholder="Enter Fullname"
+                         required>
+                    </label>
+                </div>
+
                 <div class="text-field">
                     <label for="email">Email:
                         <input type="email" id="email" name="email" autocomplete="off" placeholder="Your Email"
@@ -47,22 +55,15 @@
                         </svg>
                     </label>
                 </div>
-                <div class="text-field">
-                    <label for="confirm-password">Repeat Password:
-                        <input id="confirm-password" type="password" name="password" placeholder="Repeat Password"
-                            title="Minimum 6 characters at east 1 Alphabet and 1 Number"
-                            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" required>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z">
-                            </path>
-                            <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
-                            <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
-                        </svg>
-                    </label>
+            
+                <div class="text-field1">
+                <label for="file" class="input-pp">Profile Picture:</label>
+                <input id="file" type="file" name="pp" class="file"
+                required>
                 </div>
+                    
+
+                
                 <button class="my-form__button" type="submit">
                     Sign up
                 </button>

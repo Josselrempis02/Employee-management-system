@@ -443,6 +443,21 @@ border-radius: 10px;
   background: #161a1d;
 }
 
+.bx-show{
+  font-size: 1.5rem;
+  background: #161a1d;
+  color: var(--sidebar-gray-light);
+  border-radius: 20px;
+  padding: 0 10px;
+}
+.bx-show:hover{
+  font-size: 1.5rem;
+  background: var(--sidebar-gray-light);
+  color: var(--primary-color);
+  border-radius: 20px;
+  padding: 0 10px;
+}
+
 /* ADD EMPLOYEE CSS */
 
 /* .container{
@@ -630,24 +645,25 @@ form .fields .input-field{
 .container form .btnText{
   font-size: 14px;
   font-weight: 400;
+  background: none;
+  border: none;
+  color: var(--sidebar-gray-light);
 }
 form button:hover{
   background-image: linear-gradient(to left, #212529, #343a40, #6c757d)
 }
-form button i,
-form .backBtn i{
-  margin: 0 6px;
-}
-form .backBtn i{
-  transform: rotate(180deg);
-}
-form .buttons{
+
+.ID{
   display: flex;
-  align-items: center;
+  gap: 10px;
 }
-form .buttons button , .backBtn{
-  margin-right: 14px;
-}
+
+
+
+
+
+
+
 @media (max-width: 750px) {
   .container form{
       overflow-y: scroll;

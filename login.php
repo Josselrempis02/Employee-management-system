@@ -1,3 +1,15 @@
+<?php
+    session_start();
+
+    // Connect to the database
+    include_once("connections/connection.php");
+    $conn = connection();
+
+   
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,14 +25,46 @@
             <a href="#" title="Logo">
                 <img class="logo" src="assets/employee.png" alt="Logo">
             </a>
-            <form class="my-form" action="login.html" method="post">
+            <form class="my-form" action="login.php" method="post">
+<?php
+ if (isset($_POST["login"])) {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $sql = "SELECT * FROM employee_users WHERE email = ?";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (mysqli_stmt_prepare($stmt, $sql)) {
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+        if ($user) {
+            if (password_verify($password, $user["password"])) {
+                $_SESSION["user"] = "yes";
+                header("Location: index.php");
+                die();
+            
+            
+            } else {
+                echo "<div class='alert alert-danger'>Password does not match</div>";
+            }
+        } else {
+            echo "<div class='alert alert-danger'>Email does not match</div>";
+        }
+    }
+}
+
+
+?>
                 <div class="login-welcome-row">
                     <h1>Hi! Welcome &#x1F44F;</h1>
                 </div>
               
                 <div class="text-field">
                     <label for="email">Email:
-                        <input type="email" id="email" name="email" autocomplete="off" placeholder="Your Email"
+                        <input type="email" id="email" name="email"  placeholder="Your Email"
                             required>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -33,9 +77,8 @@
                 </div>
                 <div class="text-field">
                     <label for="password">Password:
-                        <input id="password" type="password" name="password" placeholder="Your Password" title="Minimum 6 characters at 
-                                                        least 1 Alphabet and 1 Number"
-                            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" required>
+                        <input id="password" type="password" name="password" placeholder="Your Password" 
+                             >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                             stroke-linejoin="round">
@@ -48,7 +91,7 @@
                     </label>
                 </div>
                 <button class="my-form__button" type="submit">
-                    Login
+                <input class="button1" type="submit" name="login"  onclick="showAlert()" value="Login">
                 </button>
                 <div class="my-form__actions">
                     <div class="my-form__row">
@@ -76,7 +119,11 @@
             </div>
         </div>
     </div>
-    <script src="js/script.js"></script>
+    <script>
+    
+    
+</script>
+    <!-- <script src="js/script.js"></script> -->
 </body>
 
 </html>
