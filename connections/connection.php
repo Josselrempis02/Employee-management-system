@@ -8,13 +8,13 @@
     $password = "";
     $database = "employee_system";
 
-    $conn = new mysqli($host, $username, $password, $database);
+    $con = new mysqli($host, $username, $password, $database);
 
-    if($conn->connect_error){
-        echo $conn->connect_error;
+    if($con->connect_error){
+        echo $con->connect_error;
 
     }else {
-        return $conn;
+        return $con;
     }
 
 }

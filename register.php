@@ -1,3 +1,120 @@
+<?php
+session_start();
+
+ // Connect to the database
+ include_once("connections/connection.php");
+ $conn = connection();
+
+ if (isset($_POST["submit"])) {
+    $fname = $_POST["fname"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // Hash the password
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+    // Uploading image
+    $file = $_FILES['pic'];
+
+    $fileName = $_FILES['pic']['name'];
+    $fileTmpName = $_FILES['pic']['tmp_name'];
+    $fileSize = $_FILES['pic']['size'];
+    $fileError = $_FILES['pic']['error'];
+    $fileType = $_FILES['pic']['type'];
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    $allowed = array('jpg', 'jpeg', 'png');
+    if (in_array($fileActualExt, $allowed)) {
+        if ($fileError === 0) {
+            if ($fileSize < 500000) {
+                $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                $fileDestination = 'assets/' . $fileNameNew;
+                move_uploaded_file($fileTmpName, $fileDestination);
+
+                // Insert image file name into database
+                $sql = "INSERT INTO employee_users (fullname, email, password, image) VALUES (?, ?, ?, ?)";
+                $stmt = mysqli_stmt_init($conn);
+
+                if (mysqli_stmt_prepare($stmt, $sql)) {
+                    mysqli_stmt_bind_param($stmt, "ssss", $fname, $email, $passwordHash, $fileNameNew);
+                    mysqli_stmt_execute($stmt);
+
+                    // Registration successful
+                    echo '<script>alert("You are registered successfully.");</script>';
+                } else {
+                    die("Database error");
+                }
+            } else {
+                echo "Your file is too big";
+            }
+        } else {
+            echo "There was an error uploading your file";
+        }
+    } else {
+        echo "You cannot upload files of this type!";
+    }
+
+    $errors = array();
+
+    if (empty($fname) || empty($email) || empty($password)) {
+        array_push($errors, "All fields are required");
+    }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        array_push($errors, "Email is not valid");
+    }
+    if (strlen($password) < 8) {
+        array_push($errors, "Password must be at least 8 characters long");
+    }
+
+    // Check if email already exists
+   // ... your previous code ...
+
+$sql = "SELECT * FROM employee_users WHERE email = ?";
+$stmt = mysqli_stmt_init($conn);
+
+if (mysqli_stmt_prepare($stmt, $sql)) {
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $rowCount = mysqli_num_rows($result);
+
+    if ($rowCount > 0) {
+        array_push($errors, "Email already exists!");
+    }
+
+    mysqli_stmt_close($stmt);  // Close the statement
+} else {
+    die("Database error: " . mysqli_error($conn));
+}
+
+// ... rest of your code ...
+
+    if (count($errors) > 0) {
+        foreach ($errors as $error) {
+            echo "<div class='alert alert-danger'>$error</div>";
+        }
+    }
+}
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +131,7 @@
             <a href="#" title="Logo">
                 <img class="logo" src="assets/employee.png" alt="Logo">
             </a>
-            <form class="my-form">
+            <form class="my-form" method="post" action="register.php" enctype="multipart/form-data">
                 <div class="login-welcome-row">
                     <h1>Create your account &#x1F44F;</h1>
                 </div>
@@ -58,15 +175,16 @@
             
                 <div class="text-field1">
                 <label for="file" class="input-pp">Profile Picture:</label>
-                <input id="file" type="file" name="pp" class="file"
+                <input id="file" type="file" name="pic" class="file"
                 required>
+                <button class="my-form__button" type="submit" name="submit">
+                    Sign up
+                </button>
                 </div>
                     
 
                 
-                <button class="my-form__button" type="submit">
-                    Sign up
-                </button>
+               
                 <div class="my-form__actions">
                     <div class="my-form__row">
                         <span>Did you forget your password?</span>
@@ -75,7 +193,7 @@
                         </a>
                     </div>
                     <div class="my-form__signup">
-                        <a href="login.html" title="Login">
+                        <a href="login.php" title="Login">
                            
                             Already have an account?
                         </a>
@@ -92,7 +210,7 @@
             </div>
         </div>
     </div>
-    <script src="js/script.js"></script>
+    <!-- <script src="js/script.js"></script> -->
 </body>
 
 </html>

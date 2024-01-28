@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+ // Connect to the database
+ include_once("connections/connection.php");
+ $con = connection();
+ 
+ // Fetch Department data
+ $sql = "SELECT * FROM department_list ORDER BY id DESC";
+ $department = $con->query($sql) or die ($con->error);
+ $row = $department->fetch_assoc();
+ 
+
+ 
+?>
+
+
+
+
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,25 +61,25 @@
             </li> -->
             <ul class="menu-links">
               <li class="nav-link">
-                <a href="index.html">
+                <a href="index.php">
                   <i class='bx bx-home-alt icon' ></i>
                   <span class="nav-text">Dashboard</span>
                 </a>
               </li>
               <li class="nav-link">
-                <a href="department.html">
+                <a href="department.php">
                   <i class='bx bx-buildings icon'></i>
                   <span class="nav-text">Department</span>
                 </a>
               </li>
               <li class="nav-link">
-                <a href="employee.html">
+                <a href="employee.php">
                   <i class='bx bxs-user-badge icon'></i>
                   <span class="nav-text">Employee</span>
                 </a>
               </li>
               <li class="nav-link">
-                <a href="#">
+                <a href="users.php">
                   <i class='bx bx-user icon'></i>
                   <span class="nav-text">Users</span>
                 </a>
@@ -64,7 +88,7 @@
           </div>
           <div class="bottom-content">
             <li class="">
-              <a href="#">
+              <a href="logout.php">
                 <i class='bx bx-log-out icon'></i>
                 <span class="nav-text">Logout</span>
               </a>
@@ -86,53 +110,14 @@
             <div class="search-box">
             <i class='bx bx-search-alt icon'></i>
             <input type="text" name="" id="" placeholder="Search">
+
           </div>
-          <img src="assets/profile.jpg" alt="">
+          <img src="<?php echo $imagePath; ?>" alt="User Photo">
           </div>
         </div>
 
-        <!-- <div class="card-container">
-          <h1 class="main-title"></h1>
-          <div class="card-wrapper">
-            <div class="employee-card">
-              <div class="card-header">
-                <div class="employee">
-                <span class="title">
-                  Departments
-                </span>
-                <span class="employe-value">59</span>
-              </div>
-              <i class='bx bx-building icons' ></i>
-            </div>
-          </div>
-
-          <div class="employee-card">
-            <div class="card-header">
-              <div class="employee">
-              <span class="title">
-                Employees
-              </span>
-              <span class="employe-value">59</span>
-            </div>
-            <i class='bx bxs-user-rectangle icons'></i>
-          </div>
-        </div>
-
-        <div class="employee-card">
-          <div class="card-header">
-            <div class="employee">
-            <span class="title">
-              Users
-            </span>
-            <span class="employe-value">59</span>
-          </div>
-          <i class='bx bx-user icons'></i>
-        </div>
-      </div>
-          </div>
-
-          
-        </div> -->
+      
+        </div> 
 
 
           <div class="table-data">
@@ -152,33 +137,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>ADS</td>
-                      <td>IT DEPARTMET</td>
-                      <td><span class="status">Active</span></td>
-                  </tr>
+                <?php
+                      $counter = 1;
 
-                  <tr>
-                    <td>1</td>
-                    <td>TRE</td>
-                    <td>IT DEPARTMET</td>
-                    <td><span class="status">Active</span></td>
-                </tr>
-
-                <tr>
-                    <td>1</td>
-                  <td>ERTE</td>
-                  <td>IT DEPARTMET</td>
-                  <td><span class="status">Active</span></td>
-              </tr>
-
-              <tr>
-                <td>1</td>
-                <td>SDA</td>
-                <td>IT DEPARTMET</td>
-                <td><span class="status">Active</span></td>
-            </tr>
+                      while ($row = $department->fetch_assoc()): ?>
+                          <tr>
+                              <td><?php echo $counter; ?></td>
+                              <td><?php echo $row['dept_code']; ?></td>
+                              <td><?php echo $row['dept_name']; ?></td>
+                              <td><span class="status">Active</span></td>
+                          </tr>
+                          <?php $counter++; ?>
+                      <?php endwhile; ?>
               </tbody>
               </table>
             </div>

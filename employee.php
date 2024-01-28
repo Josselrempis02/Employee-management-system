@@ -1,3 +1,23 @@
+<?php 
+    include_once("connections/connection.php");
+
+    // Always start session
+    session_start();
+
+       // Connect to database
+       $con = connection();
+
+       // Fetch employee data
+    $sql = "SELECT * FROM employee_list ORDER BY id DESC";
+    $employee = $con->query($sql) or die ($con->error);
+    $row = $employee->fetch_assoc();
+    
+?>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,25 +57,25 @@
             </li> -->
             <ul class="menu-links">
               <li class="nav-link">
-                <a href="index.html">
+                <a href="index.php">
                   <i class='bx bx-home-alt icon' ></i>
                   <span class="nav-text">Dashboard</span>
                 </a>
               </li>
               <li class="nav-link">
-                <a href="department.html">
+                <a href="department.php">
                   <i class='bx bx-buildings icon'></i>
                   <span class="nav-text">Department</span>
                 </a>
               </li>
               <li class="nav-link">
-                <a href="employee.html">
+                <a href="employee.php">
                   <i class='bx bxs-user-badge icon'></i>
                   <span class="nav-text">Employee</span>
                 </a>
               </li>
               <li class="nav-link">
-                <a href="users.html">
+                <a href="users.php">
                   <i class='bx bx-user icon'></i>
                   <span class="nav-text">Users</span>
                 </a>
@@ -64,7 +84,7 @@
           </div>
           <div class="bottom-content">
             <li class="">
-              <a href="#">
+              <a href="logout.php">
                 <i class='bx bx-log-out icon'></i>
                 <span class="nav-text">Logout</span>
               </a>
@@ -91,57 +111,13 @@
           </div>
         </div>
 
-        <!-- <div class="card-container">
-          <h1 class="main-title"></h1>
-          <div class="card-wrapper">
-            <div class="employee-card">
-              <div class="card-header">
-                <div class="employee">
-                <span class="title">
-                  Departments
-                </span>
-                <span class="employe-value">59</span>
-              </div>
-              <i class='bx bx-building icons' ></i>
-            </div>
-          </div>
-
-          <div class="employee-card">
-            <div class="card-header">
-              <div class="employee">
-              <span class="title">
-                Employees
-              </span>
-              <span class="employe-value">59</span>
-            </div>
-            <i class='bx bxs-user-rectangle icons'></i>
-          </div>
-        </div>
-
-        <div class="employee-card">
-          <div class="card-header">
-            <div class="employee">
-            <span class="title">
-              Users
-            </span>
-            <span class="employe-value">59</span>
-          </div>
-          <i class='bx bx-user icons'></i>
-        </div>
-      </div>
-          </div>
-
-          
-        </div> -->
-
-
           <div class="table-data">
             <div class="dep">
               <div class="head">
                 <h3>Employee List</h3>
                   <button class="button">
                         <i class='bx bx-plus'></i>
-                        <a href="add.html" class="add">
+                        <a href="add.php" class="add">
                           <span class="bxs-text">Add Employee</span></a>
                 </button>
                 <i class='bx bx-filter'></i>
@@ -159,115 +135,21 @@
                   </tr>
                 </thead>
                 <tbody>
+
+                <?php do { ?>
                   <tr>
-                      <td>1</td>
-                      <td>Jossel Alfred</td>
-                      <td>IT DEPARTMENT</td>
-                      <td>09-23-23</td>
-                      <td>091667790871</td>
-                      <td>Manila City</td>
+                      <td><?php echo $row['id']; ?></td>
+                      <td><?php echo $row['f_name']; ?></td>
+                      <td><?php echo $row['Departments']; ?></td>
+                      <td><?php echo $row['date']; ?></td>
+                      <td><?php echo $row['Contact_no']; ?></td>
+                      <td><?php echo $row['add']; ?></td>
                       <td>
                          <i class='bx bx-edit '></i>
                          <i class='bx bxs-trash '></i>
                       </td>
                   </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Jossel Alfred</td>
-                    <td>IT DEPARTMENT</td>
-                    <td>09-23-23</td>
-                    <td>091667790871</td>
-                    <td>Manila City</td>
-                    <td>
-                       <i class='bx bx-edit '></i>
-                       <i class='bx bxs-trash '></i>
-                    </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Jossel Alfred</td>
-                  <td>IT DEPARTMENT</td>
-                  <td>09-23-23</td>
-                  <td>091667790871</td>
-                  <td>Manila City</td>
-                  <td>
-                     <i class='bx bx-edit '></i>
-                     <i class='bx bxs-trash '></i>
-                  </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jossel Alfred</td>
-                <td>IT DEPARTMENT</td>
-                <td>09-23-23</td>
-                <td>091667790871</td>
-                <td>Manila City</td>
-                <td>
-                   <i class='bx bx-edit '></i>
-                   <i class='bx bxs-trash '></i>
-                </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Jossel Alfred</td>
-              <td>IT DEPARTMENT</td>
-              <td>09-23-23</td>
-              <td>091667790871</td>
-              <td>Manila City</td>
-              <td>
-                 <i class='bx bx-edit '></i>
-                 <i class='bx bxs-trash '></i>
-              </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Jossel Alfred</td>
-            <td>IT DEPARTMENT</td>
-            <td>09-23-23</td>
-            <td>091667790871</td>
-            <td>Manila City</td>
-            <td>
-               <i class='bx bx-edit '></i>
-               <i class='bx bxs-trash '></i>
-            </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Jossel Alfred</td>
-          <td>IT DEPARTMENT</td>
-          <td>09-23-23</td>
-          <td>091667790871</td>
-          <td>Manila City</td>
-          <td>
-             <i class='bx bx-edit '></i>
-             <i class='bx bxs-trash '></i>
-          </td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Jossel Alfred</td>
-        <td>IT DEPARTMENT</td>
-        <td>09-23-23</td>
-        <td>091667790871</td>
-        <td>Manila City</td>
-        <td>
-           <i class='bx bx-edit '></i>
-           <i class='bx bxs-trash '></i>
-        </td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Jossel Alfred</td>
-      <td>IT DEPARTMENT</td>
-      <td>09-23-23</td>
-      <td>091667790871</td>
-      <td>Manila City</td>
-      <td>
-         <i class='bx bx-edit '></i>
-         <i class='bx bxs-trash '></i>
-      </td>
-  </tr>
-                  
+                  <?php } while($row = $employee->fetch_assoc()); ?>
             
               </tbody>
               </table>

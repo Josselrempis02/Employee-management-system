@@ -37,25 +37,25 @@
             </li> -->
             <ul class="menu-links">
               <li class="nav-link">
-                <a href="index.html">
+                <a href="index.php">
                   <i class='bx bx-home-alt icon' ></i>
                   <span class="nav-text">Dashboard</span>
                 </a>
               </li>
               <li class="nav-link">
-                <a href="department.html">
+                <a href="department.php">
                   <i class='bx bx-buildings icon'></i>
                   <span class="nav-text">Department</span>
                 </a>
               </li>
               <li class="nav-link">
-                <a href="employee.html">
+                <a href="employee.php">
                   <i class='bx bxs-user-badge icon'></i>
                   <span class="nav-text">Employee</span>
                 </a>
               </li>
               <li class="nav-link">
-                <a href="users.html">
+                <a href="users.php">
                   <i class='bx bx-user icon'></i>
                   <span class="nav-text">Users</span>
                 </a>
@@ -64,7 +64,7 @@
           </div>
           <div class="bottom-content">
             <li class="">
-              <a href="#">
+              <a href="logout.php">
                 <i class='bx bx-log-out icon'></i>
                 <span class="nav-text">Logout</span>
               </a>

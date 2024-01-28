@@ -3,10 +3,39 @@
 
     // Connect to the database
     include_once("connections/connection.php");
-    $conn = connection();
+    $con = connection();
+
+    if (isset($_POST["login"])) {
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        $sql = "SELECT * FROM employee_users WHERE email = ?";
+        $stmt = mysqli_stmt_init($con);
+
+        if (mysqli_stmt_prepare($stmt, $sql)) {
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+            if ($user) {
+                if (password_verify($password, $user["password"])) {
+                    $_SESSION["user"] = "yes";
+                    header("Location: index.php");
+                    die();
+                } else {
+                    echo "<div class='alert alert-danger'>Password does not match</div>";
+                }
+            } else {
+                echo "<div class='alert alert-danger'>Email does not match</div>";
+            }
+        }
+    }
+?>
+
 
    
-?>
+
 
 
 
@@ -26,38 +55,10 @@
                 <img class="logo" src="assets/employee.png" alt="Logo">
             </a>
             <form class="my-form" action="login.php" method="post">
-<?php
- if (isset($_POST["login"])) {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    $sql = "SELECT * FROM employee_users WHERE email = ?";
-    $stmt = mysqli_stmt_init($conn);
-
-    if (mysqli_stmt_prepare($stmt, $sql)) {
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-        if ($user) {
-            if (password_verify($password, $user["password"])) {
-                $_SESSION["user"] = "yes";
-                header("Location: index.php");
-                die();
-            
-            
-            } else {
-                echo "<div class='alert alert-danger'>Password does not match</div>";
-            }
-        } else {
-            echo "<div class='alert alert-danger'>Email does not match</div>";
-        }
-    }
-}
+           
+   
 
 
-?>
                 <div class="login-welcome-row">
                     <h1>Hi! Welcome &#x1F44F;</h1>
                 </div>
@@ -90,9 +91,10 @@
                         </svg>
                     </label>
                 </div>
-                <button class="my-form__button" type="submit">
+                <button class="my-form__button" name="login" type="submit">
                 <input class="button1" type="submit" name="login"  onclick="showAlert()" value="Login">
                 </button>
+                    
                 <div class="my-form__actions">
                     <div class="my-form__row">
                         <span>Did you forget your password?</span>
@@ -101,7 +103,7 @@
                         </a>
                     </div>
                     <div class="my-form__signup">
-                        <a href="register.html" title="Login">
+                        <a href="register.php" title="Login">
                             Don't have an account?
                         </a>
                     </div>

@@ -4,8 +4,10 @@ include_once("connections/connection.php");
   // Always start session
   session_start();
 
+
+
   // Connect to database
-  $conn = connection();
+  $con = connection();
 
 
 ?>
@@ -77,7 +79,7 @@ include_once("connections/connection.php");
           </div>
           <div class="bottom-content">
             <li class="">
-              <a href="#">
+              <a href="logout.php">
                 <i class='bx bx-log-out icon'></i>
                 <span class="nav-text">Logout</span>
               </a>
