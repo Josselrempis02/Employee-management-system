@@ -101,25 +101,19 @@ session_start();
       <!-- DASHBOARD -->
       <section class="home">
        <div class="main-content">
-        <div class="header-wrapper">
+       <div class="header-wrapper">
           <div class="header-title">
             <span></span>
-            <h2>Department</h2>
+            <h2>Departments</h2>
           </div>
           <div class="user-info">
             <div class="search-box">
-            <i class='bx bx-search-alt icon'></i>
-            <input type="text" name="" id="" placeholder="Search">
-
+            <p>Jossel Rempis</p>
+            
           </div>
-          <img src="<?php echo $imagePath; ?>" alt="User Photo">
+          <img src="assets/profile.jpg" alt="">
           </div>
         </div>
-
-      
-        </div> 
-
-
           <div class="table-data">
             <div class="dep">
               <div class="head">
@@ -155,7 +149,7 @@ session_start();
             
           </div>
 
-        
+                      </div>
        </div>
       </section>
 

@@ -8,30 +8,30 @@ $con = connection();
 if (isset($_POST['submit'])) {
     $fname = mysqli_real_escape_string($con, $_POST['fname']);
     $number = mysqli_real_escape_string($con, $_POST['number']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
     $address = mysqli_real_escape_string($con, $_POST['address']);
     $departments = mysqli_real_escape_string($con, $_POST['departments']);
     $gender = mysqli_real_escape_string($con, $_POST['gender']);
     $dob = mysqli_real_escape_string($con, $_POST['dob']);
 
-    // Use prepared statements to prevent SQL injection
-    $sql = "INSERT INTO `employee_list` (`f_name`, `Contact_no`, `Departments`, `Gender`, `add`, `date`)
-            VALUES (?, ?, ?, ?, ?, ?)";
+  
+    $sql = "INSERT INTO `employee_list` (`f_name`, `Contact_no`, `email` `Departments`, `Gender`, `add`, `date`)
+            VALUES ('$fname','$number', '$email','$departments','$gender','$address', '$dob')";
 
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("ssssss", $fname, $number, $departments, $gender, $address, $dob);
-
-    if ($stmt->execute()) {
-        $stmt->close();
-        echo '<script>alert("Changes have been successfully updated."); window.location.href = "employee.php?ID=' . $id . '";</script>';
+    if ($con->query($sql) === TRUE) {
+        // Successful submission
+        $_SESSION['success_message'] = "New employee added successfully!";
+        echo '<script>alert("New employee added successfully!"); window.location.href = "employee.php";</script>';
         exit; // Exit to prevent further execution
     } else {
-        echo '<script>alert("Error updating record: ' . $stmt->error . '");</script>';
+        // Error handling
+        $_SESSION['error_message'] = "Error add new record: " . $con->error;
+        echo '<script>alert("Error updating record: ' . $con->error . '"); window.location.href = "add.php";</script>';
+        exit; // Exit to prevent further execution
     }
-
-    $stmt->close();
-    $con->close();
 }
 ?>
+
 
 
 
@@ -141,7 +141,7 @@ if (isset($_POST['submit'])) {
             
 
               <div class="container">
-                <form action="add.php" method="post">
+                <form action="" method="post">
                     <div class="form first">
                         <div class="details personal">
                             <span class="title">Employee Details</span>
@@ -203,8 +203,8 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
                         <div class="details ID">
-                            <button class="sumbit">
-                              <span class="btnText" name="submit">Submit</span>
+                            <button class="submit" name="submit">
+                            <input class="btnText" type="submit" name="submit"  value="Add">
                               <i class="uil uil-navigator"></i>
                           </button>
                         </div> 
