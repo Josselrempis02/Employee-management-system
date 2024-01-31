@@ -104,7 +104,7 @@ include_once("connections/connection.php");
             <i class='bx bx-search-alt icon'></i>
             <input type="text" name="" id="" placeholder="Search">
           </div>
-          <img src="assets/profile.jpg" alt="">
+          <img src="assets/profile.png" alt="">
           </div>
         </div>
 
@@ -182,10 +182,9 @@ include_once("connections/connection.php");
                   </tr>
                 </thead>
                 <tbody>
-                  <?php
-                            
-              
-            ?>
+                  <tr>
+                      <td>wawa</td>
+                  </tr>
               </tbody>
               </table>
             </div>
@@ -197,39 +196,30 @@ include_once("connections/connection.php");
                 <i class='bx bx-filter'></i>
               </div>
               <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                  </tr>
-              </thead>
+              <?php
+                  $sql = "SELECT * FROM `employee_users` ORDER BY id DESC";
+                  $employee_result = $con->query($sql) or die($con->error);
+                  ?>
+
+                  <thead>
+                      <tr>
+                          <th>Name</th>
+                      </tr>
+                  </thead>
                   <tbody>
-                      <tr>
-                        <td>
-                            <img src="assets/profile.jpg" alt="">
-                            <p>Jossel</p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                            <img src="assets/profile.jpg" alt="">
-                            <p>Jossel</p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                            <img src="assets/profile.jpg" alt="">
-                            <p>Jossel</p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                            <img src="assets/profile.jpg" alt="">
-                            <p>Jossel</p>
-                        </td>
-                      </tr>
+                      <?php
+                      // Loop through the result set
+                      while ($row = $employee_result->fetch_assoc()) {
+                      ?>
+                          <tr>
+                              <td>
+                                  <img src="assets/profile.png" alt="">
+                                  <p><?php echo $row['fullname']; ?></p>
+                              </td>
+                          </tr>
+                      <?php
+                      }
+                      ?>
                   </tbody>
               </table>
               </div>

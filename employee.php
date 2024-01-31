@@ -95,7 +95,7 @@
             <p>Jossel Rempis</p>
             
           </div>
-          <img src="assets/profile.jpg" alt="">
+          <img src="assets/profile.png" alt="">
           </div>
         </div>
             <div class="table-data">

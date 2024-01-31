@@ -53,12 +53,6 @@ session_start();
 
         <div class="menu-bar">
           <div class="menu">
-            <!-- <li class="search-box">
-              <a href="#">
-                <i class='bx bx-search-alt icon'></i>
-                <input type="search" placeholder="Search...">
-              </a>
-            </li> -->
             <ul class="menu-links">
               <li class="nav-link">
                 <a href="index.php">
@@ -111,7 +105,7 @@ session_start();
             <p>Jossel Rempis</p>
             
           </div>
-          <img src="assets/profile.jpg" alt="">
+          <img src="assets/profile.png" alt="">
           </div>
         </div>
           <div class="table-data">

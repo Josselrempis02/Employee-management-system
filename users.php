@@ -1,3 +1,13 @@
+<?php 
+    include_once("connections/connection.php");
+
+    // Always start session
+    session_start();
+
+    // Connect to database
+    $con = connection();
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,7 +95,7 @@
                         <i class='bx bx-search-alt icon'></i>
                         <input type="text" name="" id="" placeholder="Search">
                     </div>
-                    <img src="assets/profile.jpg" alt="">
+                    <img src="assets/profile.png" alt="">
                 </div>
             </div>
 
@@ -96,6 +106,10 @@
                         <i class='bx bx-filter'></i>
                     </div>
                     <table>
+                    <?php
+                  $sql = "SELECT * FROM `employee_users` ORDER BY id DESC";
+                  $employee_result = $con->query($sql) or die($con->error);
+                  ?>
                         <thead>
                             <tr>
                                 <th>User Name</th>
@@ -104,28 +118,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php
+                      // Loop through the result set
+                      while ($row = $employee_result->fetch_assoc()) {
+                      ?>
                             <tr>
                                 <td>
-                                    <img src="assets/profile.jpg" alt="">
-                                    <p>Jossel</p>
+                                    <img src="assets/profile.png" alt="">
+                                    <p><?php echo $row['fullname']; ?></p>
                                 </td>
-                                <td>Josselrempis02@gmail.com</td>
+                                <td><?php echo $row['email']; ?></td>
                                 <td>
                                   <i class='bx bx-show icons'></i>
                                 </td>
                             </tr>
 
-                            <tr>
-
-                              <td>
-                                  <img src="assets/profile.jpg" alt="">
-                                  <p>Jossel</p>
-                              </td>
-                              <td>Josselrempis02@gmail.com</td>
-                              <td>
-                                <i class='bx bx-show icons'></i>
-                              </td>
-                          </tr>
+                            <?php
+                      }
+                      ?>
                         </tbody>
                     </table>
                 </div>
