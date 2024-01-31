@@ -385,7 +385,9 @@ border-radius: 10px;
   padding: 8px;
   transition: all .5s ease-in-out;
   cursor: pointer;
+ 
 }
+
 
 .bx-edit:hover{
   transform: translateY(-5px);
@@ -395,6 +397,17 @@ border-radius: 10px;
   transform: translateY(-5px);
 }
 
+.button_form{
+  display: flex;
+  gap: 10px;
+  
+}
+
+.button_form .button2{
+  border: none;
+  background: none;
+
+}
 
 
 .table-data tbody tr:nth-of-type(odd){

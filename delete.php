@@ -8,19 +8,20 @@ session_start();
 // Connect to database
 $con = connection();
 
-if(isset($_POST['delete'])){
-    $id = $_POST['ID'];
-     $sql = "DELETE FROM employee_list WHERE id = '$id'";
+if (isset($_GET['ID'])) {
+    $id = $_GET['ID'];
 
-     if ($con->query($sql) === TRUE) {
+    // Delete query
+    $deleteSql = "DELETE FROM employee_list WHERE id='$id'";
+    if ($con->query($deleteSql) === TRUE) {
         // Successful submission
-        $_SESSION['success_message'] = "Record has been deleted successfully.";
-        echo '<script>alert("Record has been deleted successfully."); window.location.href = "employee.php";</script>';
+        $_SESSION['success_message'] = "Record have been successfully deleted.";
+        echo '<script>alert("Record have been successfully deleted."); window.location.href = "employee.php?ID=' . $id . '";</script>';
         exit; // Exit to prevent further execution
     } else {
         // Error handling
-        $_SESSION['error_message'] = "Error delete record: " . $con->error;
-        echo '<script>alert("Error updating record: ' . $con->error . '"); window.location.href = "employee.php";</script>';
+        $_SESSION['error_message'] = "Error deleting record: " . $con->error;
+        echo '<script>alert("Error updating record: ' . $con->error . '"); window.location.href = "edit.php";</script>';
         exit; // Exit to prevent further execution
     }
 }

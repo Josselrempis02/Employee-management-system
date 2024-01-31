@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     $dob = mysqli_real_escape_string($con, $_POST['dob']);
 
   
-    $sql = "INSERT INTO `employee_list` (`f_name`, `Contact_no`, `email` `Departments`, `Gender`, `add`, `date`)
+    $sql = "INSERT INTO `employee_list` (`f_name`, `Contact_no`, `email`, `Departments`, `Gender`, `add`, `date`)
             VALUES ('$fname','$number', '$email','$departments','$gender','$address', '$dob')";
 
     if ($con->query($sql) === TRUE) {

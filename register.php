@@ -48,6 +48,9 @@ if (isset($_POST["submit"])) {
             echo "<div class='alert alert-danger'>$error</div>";
         }
     } else {
+        // Hash the password
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
         // Insert user data into the database (excluding image field)
         $sql = "INSERT INTO employee_users (fullname, email, password) VALUES (?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
@@ -59,14 +62,15 @@ if (isset($_POST["submit"])) {
             // Registration successful
             echo '<script>alert("You are registered successfully.");</script>';
         } else {
-            die("Database error");
+            die("Database error: " . mysqli_error($conn));
         }
     }
 }
 
-
-
+// Close the connection
+$conn->close();
 ?>
+
 
 
 

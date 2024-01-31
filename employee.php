@@ -136,12 +136,12 @@
                                     <td><?php echo $row['date']; ?></td>
                                     <td><?php echo $row['Contact_no']; ?></td>
                                     <td><?php echo $row['add']; ?></td>
-                                    <td>
+                                    <td class="button_form">
                                         <a href="edit.php?ID=<?php echo $row['id']; ?>"><i class='bx bx-edit'></i></a>
                                         <!-- Add the delete form here -->
-                                        <form action="delete.php" method="post" style="display:inline;">
+                                        <form  action="delete.php" method="get" >
                                             <input type="hidden" name="ID" value="<?php echo $row['id']; ?>">
-                                            <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')">
+                                            <button class= "button2" type="submit" onclick="return confirm('Are you sure you want to delete this record?')">
                                                 <i class='bx bxs-trash'></i>
                                             </button>
                                         </form>

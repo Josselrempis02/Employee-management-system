@@ -9,8 +9,10 @@ include_once("connections/connection.php");
   // Connect to database
   $con = connection();
 
-
-?>
+ // Fetch employee data
+ $sql = "SELECT * FROM department_list ORDER BY id DESC";
+ $employee = $con->query($sql) or die ($con->error);
+   ?>
 
 
 
@@ -106,66 +108,59 @@ include_once("connections/connection.php");
           </div>
         </div>
 
-        <!-- <div class="card-container">
-          <h1 class="main-title"></h1>
-          <div class="card-wrapper">
-            <div class="employee-card">
-              <div class="card-header">
-                <div class="employee">
-                <span class="title">
-                  Departments
-                </span>
-                <span class="employe-value">59</span>
-              </div>
-              <i class='bx bx-building icons' ></i>
-            </div>
-          </div>
-
-          <div class="employee-card">
-            <div class="card-header">
-              <div class="employee">
-              <span class="title">
-                Employees
-              </span>
-              <span class="employe-value">59</span>
-            </div>
-            <i class='bx bxs-user-rectangle icons'></i>
-          </div>
-        </div>
-
-        <div class="employee-card">
-          <div class="card-header">
-            <div class="employee">
-            <span class="title">
-              Users
-            </span>
-            <span class="employe-value">59</span>
-          </div>
-          <i class='bx bx-user icons'></i>
-        </div>
-      </div>
-          </div>
-
-          
-        </div> -->
+     
 
         <ul class="box-info">
           <li>
             <i class='bx bx-building' ></i>
            <span class="text">
-            <h3>230</h3>
+           <?php
+            $count = "SELECT * from department_list";
+            $count_run = mysqli_query($con, $count);
+
+            if($count_total = mysqli_num_rows($count_run)){
+              echo '<h3> '.$count_total .'</h3>';
+            } else{
+              echo '<h3> no data </h3>';
+            }
+            
+            
+            ?>
             <p>Departments</p>
           </span>
           <li>
             <i class='bx bxs-user-badge'></i>
            <span class="text">
-            <h3>20</h3>
+            <?php
+            $count = "SELECT * from employee_list";
+            $count_run = mysqli_query($con, $count);
+
+            if($count_total = mysqli_num_rows($count_run)){
+              echo '<h3> '.$count_total .'</h3>';
+            } else{
+              echo '<h3> no data </h3>';
+            }
+            
+            
+            ?>
+
             <p>Employee</p>
           </span>
           <li>
             <i class='bx bx-user' ></i>
            <span class="text">
-            <h3>3</h3>
+           <?php
+            $count = "SELECT * from employee_users";
+            $count_run = mysqli_query($con, $count);
+
+            if($count_total = mysqli_num_rows($count_run)){
+              echo '<h3> '.$count_total .'</h3>';
+            } else{
+              echo '<h3> no data </h3>';
+            }
+            
+            
+            ?>
             <p>Users</p>
           </span>
           </li>
@@ -187,29 +182,10 @@ include_once("connections/connection.php");
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>IT DEPARTMET</td>
-                      <td>4</td>
-                  </tr>
-
-                  <tr>
-                    <td>1</td>
-                    <td>IT DEPARTMET</td>
-                    <td>4</td>
-                </tr>
-
-                <tr>
-                  <td>1</td>
-                  <td>IT DEPARTMET</td>
-                  <td>4</td>
-              </tr>
-
-              <tr>
-                <td>1</td>
-                <td>IT DEPARTMET</td>
-                <td>4</td>
-            </tr>
+                  <?php
+                            
+              
+            ?>
               </tbody>
               </table>
             </div>
