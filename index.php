@@ -173,20 +173,48 @@ include_once("connections/connection.php");
                 <i class='bx bx-search-alt'></i>
                 <i class='bx bx-filter'></i>
               </div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Department</th>
-                    <th>Employees</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                      <td>wawa</td>
-                  </tr>
-              </tbody>
-              </table>
+              <?php
+              // Assuming $con is your database connection
+
+              $count_query = "SELECT COUNT(f_name) as count, Departments FROM employee_list GROUP BY Departments";
+              $count_result = mysqli_query($con, $count_query);
+
+              echo '<table>
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Department</th>
+                          <th>Employees</th>
+                        </tr>
+                      </thead>
+                      <tbody>';
+
+              if ($count_result) {
+                  $id = 1;
+                  while ($row = mysqli_fetch_assoc($count_result)) {
+                      $department = $row['Departments'];
+                      $count = $row['count'];
+
+                      echo "<tr>
+                              <td>$id</td>
+                              <td>$department</td>
+                              <td>$count</td>
+                            </tr>";
+
+                      $id++;
+                  }
+              } else {
+                  echo '<tr>
+                          <td colspan="3">No data</td>
+                        </tr>';
+              }
+
+              echo '</tbody>
+                    </table>';
+
+              
+              ?>
+
             </div>
             <div class="todo">
               <div class="dep">
