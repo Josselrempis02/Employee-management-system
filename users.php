@@ -97,7 +97,6 @@
                 </div>
                 <div class="user-info">
                     <div class="search-box">
-                       <p><?php echo $result['fullname']; ?></p>
                     </div>
                     <img src="assets/profile.png" alt="">
                 </div>

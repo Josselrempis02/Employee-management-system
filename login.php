@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+
+
     // Connect to the database
     include_once("connections/connection.php");
     $con = connection();
