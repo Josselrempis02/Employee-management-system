@@ -87,13 +87,17 @@
         <div class="main-content">
             <div class="header-wrapper">
                 <div class="header-title">
+                <?php
+                 $sql = "SELECT * from employee_users";
+                 $query = mysqli_query($con, $sql);
+                 $result = mysqli_fetch_assoc($query)
+                  ?>
                     <span></span>
                     <h2>Users</h2>
                 </div>
                 <div class="user-info">
                     <div class="search-box">
-                        <i class='bx bx-search-alt icon'></i>
-                        <input type="text" name="" id="" placeholder="Search">
+                       <p><?php echo $result['fullname']; ?></p>
                     </div>
                     <img src="assets/profile.png" alt="">
                 </div>
