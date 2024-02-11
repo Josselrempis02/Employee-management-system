@@ -91,7 +91,7 @@ $conn->close();
 
 <head>
     <meta charset="UTF-8">
-    <title>Task Manager</title>
+    <title>Employee Management System</title>
     <link rel="stylesheet" href="css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>

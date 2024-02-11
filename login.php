@@ -46,7 +46,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Task Manager</title>
+    <title>Employee Management System</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
