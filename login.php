@@ -1,39 +1,101 @@
 <?php
-    session_start();
+session_start();
 
+// Connect to the database
+include_once("connections/connection.php");
+$con = connection();
 
+if (isset($_POST["login"])) {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
-    // Connect to the database
-    include_once("connections/connection.php");
-    $con = connection();
+    $sql = "SELECT * FROM employee_users WHERE email = ?";
+    $stmt = mysqli_stmt_init($con);
 
-    if (isset($_POST["login"])) {
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+    if (mysqli_stmt_prepare($stmt, $sql)) {
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $user = mysqli_fetch_assoc($result);
 
-        $sql = "SELECT * FROM employee_users WHERE email = ?";
-        $stmt = mysqli_stmt_init($con);
-
-        if (mysqli_stmt_prepare($stmt, $sql)) {
-            mysqli_stmt_bind_param($stmt, "s", $email);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-            $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-            if ($user) {
-                if (password_verify($password, $user["password"])) {
-                    $_SESSION["user"] = "yes";
-                    header("Location: index.php");
-                    die();
-                } else {
-                    echo "<div class='alert alert-danger'>Password does not match</div>";
-                }
+        if ($user) {
+            // Verify password
+            if (password_verify($password, $user["password"])) {
+                // Successful login
+                $_SESSION["logged_in"] = true; // Set login status
+                $_SESSION["email"] = $user["email"]; // Store email in session, if needed
+                $_SESSION["user_id"] = $user["id"]; // Assuming user id is stored in 'id' column
+                
+                // Redirect to homepage
+                header("Location: index.php");
+                exit();
             } else {
-                echo "<div class='alert alert-danger'>Email does not match</div>";
+                $error = "Password does not match";
             }
+        } else {
+            $error = "Email does not match";
         }
     }
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="form-wrapper">
+        <div class="form-side">
+            <a href="#" title="Logo">
+                <img class="logo" src="assets/employee.png" alt="Logo">
+            </a>
+            <form class="my-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="login-welcome-row">
+                    <h1>Hi! Welcome &#x1F44F;</h1>
+                </div>
+                <div class="text-field">
+                    <label for="email">Email:
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </label>
+                </div>
+                <div class="text-field">
+                    <label for="password">Password:
+                        <input id="password" type="password" name="password" placeholder="Your Password" required>
+                    </label>
+                </div>
+                <button class="my-form__button" type="submit" name="login">Login</button>
+                <?php if(isset($error)) { ?>
+                <p class="alert alert-danger"><?php echo $error; ?></p>
+                <?php } ?>
+                <div class="my-form__actions">
+                    <div class="my-form__row">
+                        <span>Did you forget your password?</span>
+                        <a href="#" title="Reset Password">Reset Password</a>
+                    </div>
+                    <div class="my-form__signup">
+                        <a href="register.php" title="Login">Don't have an account?</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="info-side">
+            <img src="assets/employee.png" alt="Mock" class="mockup" />
+            <div class="welcome-message">
+                <h2>Employee Management 👋</h2>
+                <p>Effortlessly oversee employee-related records and maintain organization with our Employee Management System.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
 
 
    

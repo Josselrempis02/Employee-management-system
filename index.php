@@ -1,18 +1,24 @@
 <?php
 include_once("connections/connection.php");
 
-  // Always start session
-  session_start();
+// Always start session
+session_start();
 
+// Check if the user is not logged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    // Redirect to login page
+    header("Location: login.php");
+    exit(); // Ensure script execution stops after redirection
+}
 
+// Connect to database
+$con = connection();
 
-  // Connect to database
-  $con = connection();
-
- // Fetch employee data
- $sql = "SELECT * FROM department_list ORDER BY id DESC";
- $employee = $con->query($sql) or die ($con->error);
-   ?>
+// Fetch employee data
+$sql = "SELECT * FROM department_list ORDER BY id DESC";
+$result = $con->query($sql) or die($con->error);
+$employees = $result->fetch_all(MYSQLI_ASSOC);
+?>
 
 
 
