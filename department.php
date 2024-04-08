@@ -101,12 +101,12 @@ session_start();
             <h2>Departments</h2>
           </div>
           <div class="user-info">
-            <div class="search-box">
-            <p>Jossel Rempis</p>
-            
-          </div>
-          <img src="assets/profile.png" alt="">
-          </div>
+    <div class="search-box">
+       
+    </div>
+    <img src="assets/profile.png" alt="">
+</div>
+
         </div>
           <div class="table-data">
             <div class="dep">

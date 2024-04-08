@@ -256,6 +256,10 @@ border-radius: 10px;
   transform: scale();
 }
 
+.search-box p {
+  color: black;
+  font-size: 30px;
+}
 /* Dashboard Card */
 
 

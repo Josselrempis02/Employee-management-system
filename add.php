@@ -122,10 +122,10 @@ if (isset($_POST['submit'])) {
           </div>
           <div class="user-info">
             <div class="search-box">
-            <p>Jossel Rempis</p>
+            
             
           </div>
-          <img src="assets/profile.jpg" alt="">
+          <img src="assets/profile.png" alt="">
           </div>
         </div>
 
