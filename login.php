@@ -75,7 +75,7 @@ if (isset($_POST["login"])) {
                 <div class="my-form__actions">
                     <div class="my-form__row">
                         <span>Did you forget your password?</span>
-                        <a href="#" title="Reset Password">Reset Password</a>
+                        <a href="forgot-password.php" title="Reset Password">Reset Password</a>
                     </div>
                     <div class="my-form__signup">
                         <a href="register.php" title="Login">Don't have an account?</a>

@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+// Check if the user is not logged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  // Redirect to login page
+  header("Location: login.php");
+  exit(); // Ensure script execution stops after redirection
+}
 // Connect to the database
 include_once("connections/connection.php");
 $con = connection();
